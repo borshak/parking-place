@@ -4,7 +4,8 @@
   "description": "Task about parking place.",
   "main": "main.js",
   "scripts": {
-    "test": "test"
+    "start": "node ./js/main.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
