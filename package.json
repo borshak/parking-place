@@ -1,0 +1,22 @@
+{
+  "name": "parking-place",
+  "version": "1.0.0",
+  "description": "Task about parking place.",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borshak/parking-place.git"
+  },
+  "author": "Alexander Borshak",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/borshak/parking-place/issues"
+  },
+  "homepage": "https://github.com/borshak/parking-place#readme",
+  "dependencies": {
+    "jest": "^20.0.4"
+  }
+}
