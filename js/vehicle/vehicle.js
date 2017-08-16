@@ -1,35 +1,89 @@
-const Vehicle = require('./base.js');
+// Vehicle ADT
+
+const VEHICLE_TYPE = {
+    ABSENT: 'ABSENT',
+    SMALL: 'SMALL',
+    MEDIUM: 'MEDIUM',
+    LAGRE: 'LARGE'
+};
+
+
+// Main constructor
+const make = (size, description) => {
+    return {
+        SIZE: size,
+        DESCRIPTION: description
+    };
+};
+
+
+// Selectors
+const getSize = (vehicle) => {
+    return vehicle.SIZE;
+};
+
+const getDescription = (vehicle) => {
+    return vehicle.DESCRIPTION;
+};
+
+
+// Serializing
+const toString = (vehicle) => {
+    return `( Vehicle: (${getSize(vehicle)}) ${getDescription(vehicle)} )`;
+};
+
+
+// Additional constructors
+const makeAbsent = () => {
+    return make(VEHICLE_TYPE.ABSENT, '');
+};
 
 const makeSmall = (description) => {
-    return Vehicle.make(Vehicle.VEHICLE_SIZE.SMALL, description);
+    return make(VEHICLE_TYPE.SMALL, description);
 };
 
 const makeMedium = (description) => {
-    return Vehicle.make(Vehicle.VEHICLE_SIZE.MEDIUM, description);
+    return make(VEHICLE_TYPE.MEDIUM, description);
 };
 
 const makeLarge = (description) => {
-    return Vehicle.make(Vehicle.VEHICLE_SIZE.LAGRE, description);
+    return make(VEHICLE_TYPE.LAGRE, description);
+};
+
+
+// Predicats
+const isNotExist = (vehicle) => {
+    return getSize(vehicle) === VEHICLE_TYPE.ABSENT;
+};
+
+const isExist = (vehicle) => {
+    return !isNotExist(vehicle);
 };
 
 const isSmall = (vehicle) => {
-    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.SMALL;
+    return getSize(vehicle) === VEHICLE_TYPE.SMALL;
 };
 
 const isMedium = (vehicle) => {
-    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.MEDIUM;
+    return getSize(vehicle) === VEHICLE_TYPE.MEDIUM;
 };
 
 const isLarge = (vehicle) => {
-    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.LAGRE;
+    return getSize(vehicle) === VEHICLE_TYPE.LAGRE;
 };
 
+
 module.exports = {
+    makeAbsent: makeAbsent,
     makeSmall: makeSmall,
     makeMedium: makeMedium,
     makeLarge: makeLarge,
+
+    isNotExist: isNotExist,
+    isExist: isExist,
     isSmall: isSmall,
     isMedium: isMedium,
     isLarge: isLarge,
-    toString: Vehicle.toString
+
+    toString: toString
 };
