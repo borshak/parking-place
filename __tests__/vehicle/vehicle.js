@@ -1,4 +1,5 @@
-const Vehicle = require('../../js/vehicle/vehicle');
+// const Vehicle = require('../../js/vehicle/vehicle');
+const Vehicle = require('../../js/vehicle/interface');
 
 test('Absent vehicle is not exist', () => {
     const v1 = Vehicle.makeAbsent();

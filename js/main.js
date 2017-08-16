@@ -1,5 +1,6 @@
-const Vehicle = require('./vehicle/vehicle');
-const ParkingSpot = require('./parking-spot/parking-spot');
+// const Vehicle = require('./vehicle/vehicle');
+const Vehicle = require('./vehicle/interface');
+const ParkingSpot = require('./parking-spot/interface');
 
 const main = () => {
     return `MAIN`;

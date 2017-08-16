@@ -1,6 +1,7 @@
 // Parking Spot ATD
 
-const Vehicle = require('../vehicle/vehicle');
+// const Vehicle = require('../vehicle/vehicle');
+const Vehicle = require('../vehicle/interface');
 
 const SPOT_TYPE = {
     SMALL: 'SMALL',
@@ -109,7 +110,6 @@ const toString = (parkingSpot) => {
 
 
 module.exports = {
-    SPOT_TYPE: SPOT_TYPE,
     makeSmall: makeSmall,
     makeMedium: makeMedium,
     makeLarge: makeLarge,
