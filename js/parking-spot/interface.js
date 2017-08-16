@@ -5,8 +5,12 @@ module.exports = {
     makeMedium: ParkingSpot.makeMedium,
     makeLarge: ParkingSpot.makeLarge,
 
-    getType: ParkingSpot.getType,
-    getContent: ParkingSpot.getContent,
+    isEmpty: ParkingSpot.isEmpty,
+    isContainsVehicle: ParkingSpot.isContainsVehicle,
+    isSmall: ParkingSpot.isSmall,
+    isMedium: ParkingSpot.isMedium,
+    isLarge: ParkingSpot.isLarge,
+    isFitToVehicle: ParkingSpot.isFitToVehicle,
 
     placeVehicle: ParkingSpot.placeVehicle,
     releaseVehicle: ParkingSpot.releaseVehicle,

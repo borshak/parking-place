@@ -29,7 +29,7 @@ const makeMedium = () => {
 };
 
 const makeLarge = () => {
-    return make(SPOT_TYPE.makeLarge);
+    return make(SPOT_TYPE.LARGE);
 };
 
 // Selectors
@@ -53,15 +53,15 @@ const isContainsVehicle = (parkingSpot) => {
 };
 
 const isSmall = (parkingSpot) => {
-    return parkingSpot.gettype() === SPOT_TYPE.SMALL;
+    return getType(parkingSpot) === SPOT_TYPE.SMALL;
 };
 
 const isMedium = (parkingSpot) => {
-    return parkingSpot.gettype() === SPOT_TYPE.MEDIUM;
+    return getType(parkingSpot) === SPOT_TYPE.MEDIUM;
 };
 
 const isLarge = (parkingSpot) => {
-    return parkingSpot.gettype() === SPOT_TYPE.LARGE;
+    return getType(parkingSpot) === SPOT_TYPE.LARGE;
 };
 
 const isFitToVehicle = (parkingSpot, vehicle) => {
@@ -85,7 +85,9 @@ const isFitToVehicle = (parkingSpot, vehicle) => {
 
 // Mutators
 const placeVehicle = (parkingSpot, vehicle) => {
-    if (isEmpty(parkingSpot) && Vehicle.isExist(vehicle)) {
+    if (isEmpty(parkingSpot) &&
+        Vehicle.isExist(vehicle) &&
+        isFitToVehicle(parkingSpot, vehicle)) {
         parkingSpot.CONTENT = vehicle;
         return true;
     } else {
@@ -114,10 +116,14 @@ module.exports = {
     makeMedium: makeMedium,
     makeLarge: makeLarge,
 
-    getType: getType,
-    getContent: getContent,
+    isEmpty: isEmpty,
+    isContainsVehicle: isContainsVehicle,
+    isSmall: isSmall,
+    isMedium: isMedium,
+    isLarge: isLarge,
+    isFitToVehicle: isFitToVehicle,
 
-    placeVehicle:placeVehicle,
+    placeVehicle: placeVehicle,
     releaseVehicle: releaseVehicle,
 
     toString: toString
