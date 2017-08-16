@@ -1,6 +1,5 @@
 // Parking Spot ATD
 
-// const Vehicle = require('../vehicle/vehicle');
 const Vehicle = require('../vehicle/interface');
 
 const SPOT_TYPE = {
