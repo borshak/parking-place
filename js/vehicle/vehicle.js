@@ -11,15 +11,15 @@ const VEHICLE_TYPE = {
 // Main constructor
 const make = (size, description) => {
     return {
-        SIZE: size,
+        TYPE: size,
         DESCRIPTION: description
     };
 };
 
 
 // Selectors
-const getSize = (vehicle) => {
-    return vehicle.SIZE;
+const getType = (vehicle) => {
+    return vehicle.TYPE;
 };
 
 const getDescription = (vehicle) => {
@@ -29,7 +29,7 @@ const getDescription = (vehicle) => {
 
 // Serializing
 const toString = (vehicle) => {
-    return `( Vehicle: (${getSize(vehicle)}) ${getDescription(vehicle)} )`;
+    return `((${getType(vehicle)}) ${getDescription(vehicle)} )`;
 };
 
 
@@ -53,7 +53,7 @@ const makeLarge = (description) => {
 
 // Predicats
 const isNotExist = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_TYPE.ABSENT;
+    return getType(vehicle) === VEHICLE_TYPE.ABSENT;
 };
 
 const isExist = (vehicle) => {
@@ -61,15 +61,15 @@ const isExist = (vehicle) => {
 };
 
 const isSmall = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_TYPE.SMALL;
+    return getType(vehicle) === VEHICLE_TYPE.SMALL;
 };
 
 const isMedium = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_TYPE.MEDIUM;
+    return getType(vehicle) === VEHICLE_TYPE.MEDIUM;
 };
 
 const isLarge = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_TYPE.LARGE;
+    return getType(vehicle) === VEHICLE_TYPE.LARGE;
 };
 
 

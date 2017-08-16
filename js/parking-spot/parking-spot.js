@@ -43,7 +43,8 @@ const getContent = (parkingSpot) => {
 
 // Predicats
 const isEmpty = (parkingSpot) => {
-    return Vehicle.isAbscent(ParkingSpot.getContent(parkingSpot));
+    const vehicle = getContent(parkingSpot);
+    return Vehicle.isNotExist(vehicle);
 };
 
 const isContainsVehicle = (parkingSpot) => {
@@ -93,7 +94,7 @@ const placeVehicle = (parkingSpot, vehicle) => {
 
 const releaseVehicle= (parkingSpot) => {
     if (isContainsVehicle(parkingSpot)) {
-        const vehicle = parkingSpot.getContent();
+        const vehicle = getContent(parkingSpot);
         parkingSpot.CONTENT = Vehicle.makeAbsent();
         return vehicle;
     } else {
@@ -103,14 +104,21 @@ const releaseVehicle= (parkingSpot) => {
 
 // Serializing
 const toString = (parkingSpot) => {
-    return `[ SPOT - ${getType(parkingSpot)} ][ ${getContent(toString)} ] `;
+    return `[ SPOT: ${getType(parkingSpot)} ][ ${Vehicle.toString(getContent(parkingSpot))} ] `;
 };
 
 
 module.exports = {
     SPOT_TYPE: SPOT_TYPE,
-    make: make,
+    makeSmall: makeSmall,
+    makeMedium: makeMedium,
+    makeLarge: makeLarge,
+
     getType: getType,
     getContent: getContent,
+
+    placeVehicle:placeVehicle,
+    releaseVehicle: releaseVehicle,
+
     toString: toString
 };
