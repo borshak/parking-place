@@ -1,60 +1,35 @@
-const VEHICLE_SIZE = {
-    SMALL: 'SMALL',
-    MEDIUM: 'MEDIUM',
-    LAGRE: 'LARGE'
+const Vehicle = require('./base.js');
+
+const makeSmall = (description) => {
+    return Vehicle.make(Vehicle.VEHICLE_SIZE.SMALL, description);
 };
 
-const makeVehicle = (size, description) => {
-    return {
-        SIZE: size,
-        DESCRIPTION: description
-    };
+const makeMedium = (description) => {
+    return Vehicle.make(Vehicle.VEHICLE_SIZE.MEDIUM, description);
 };
 
-const makeSmallVehicle = (description) => {
-    return makeVehicle(VEHICLE_SIZE.SMALL, description);
-};
-
-const makeMediumVehicle = (description) => {
-    return makeVehicle(VEHICLE_SIZE.MEDIUM, description);
-};
-
-const makeLargeVehicle = (description) => {
-    return makeVehicle(VEHICLE_SIZE.LAGRE, description);
-};
-
-const getSize = (vehicle) => {
-    return vehicle.SIZE;
-};
-
-const getDescription = (vehicle) => {
-    return vehicle.DESCRIPTION;
+const makeLarge = (description) => {
+    return Vehicle.make(Vehicle.VEHICLE_SIZE.LAGRE, description);
 };
 
 const isSmall = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_SIZE.SMALL;
+    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.SMALL;
 };
 
 const isMedium = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_SIZE.MEDIUM;
+    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.MEDIUM;
 };
 
 const isLarge = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_SIZE.LAGRE;
-};
-
-const toString = (vehicle) => {
-    return `[ Vehicle: (${getSize(vehicle)}) ${getDescription(vehicle)} ]`;
+    return Vehicle.getSize(vehicle) === Vehicle.VEHICLE_SIZE.LAGRE;
 };
 
 module.exports = {
-    makeSmallVehicle: makeSmallVehicle,
-    makeMediumVehicle: makeMediumVehicle,
-    makeLargeVehicle: makeLargeVehicle,
-    getSize: getSize,
-    getDescription: getDescription,
+    makeSmall: makeSmall,
+    makeMedium: makeMedium,
+    makeLarge: makeLarge,
     isSmall: isSmall,
     isMedium: isMedium,
     isLarge: isLarge,
-    toString: toString
+    toString: Vehicle.toString
 };
