@@ -4,7 +4,7 @@ const VEHICLE_TYPE = {
     ABSENT: 'ABSENT',
     SMALL: 'SMALL',
     MEDIUM: 'MEDIUM',
-    LAGRE: 'LARGE'
+    LARGE: 'LARGE'
 };
 
 
@@ -47,7 +47,7 @@ const makeMedium = (description) => {
 };
 
 const makeLarge = (description) => {
-    return make(VEHICLE_TYPE.LAGRE, description);
+    return make(VEHICLE_TYPE.LARGE, description);
 };
 
 
@@ -69,7 +69,7 @@ const isMedium = (vehicle) => {
 };
 
 const isLarge = (vehicle) => {
-    return getSize(vehicle) === VEHICLE_TYPE.LAGRE;
+    return getSize(vehicle) === VEHICLE_TYPE.LARGE;
 };
 
 
