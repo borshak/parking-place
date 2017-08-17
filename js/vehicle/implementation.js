@@ -29,7 +29,7 @@ const getDescription = (vehicle) => {
 
 // Serializing
 const toString = (vehicle) => {
-    return `- (${getType(vehicle)}) ${getDescription(vehicle)} -`;
+    return `- (${isExist(vehicle) ? getType(vehicle) : 'empty'}) ${getDescription(vehicle)} -`;
 };
 
 
