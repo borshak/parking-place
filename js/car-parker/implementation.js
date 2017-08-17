@@ -60,6 +60,12 @@ const parkVehicle = (parker, lot, vehicle) => {
     return ParkingLot.placeVehicle(lot, vehicle);
 };
 
+
+const parkQueue = (parker, lot, queue) => {
+    // TODO: write implementation
+};
+
+
 const releaseVehicle = (parker, lot) => {
     if (ParkingLot.isContainsVehicles(lot)) return ParkingLot.releaseVehicle(lot);
     else return Vehicle.makeAbsent();

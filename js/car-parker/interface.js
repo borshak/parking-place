@@ -5,5 +5,6 @@ module.exports = {
 
     sortQueue: CarParker.sortQueue,
     parkVehicle: CarParker.parkVehicle,
+    parkQueue: CarParker.parkQueue,
     releaseVehicle: CarParker.releaseVehicle
 };
