@@ -86,3 +86,78 @@ test('Car Parker can not park vehicle onto busy lot', () => {
     expect(CarParker.parkVehicle(parker, lot_2, v_3)).toBe(false);
     expect(ParkingLot.isContainsVehicles(lot_2)).toBe(true);
 });
+
+test('Car Parker park whole queue', () => {
+    const parker = CarParker.makeParker();
+    const v_1 = Vehicle.makeMedium('Mercedes S-600');
+    const v_2 = Vehicle.makeMedium('Mercedes S-600');
+    const v_3 = Vehicle.makeMedium('ZAZ');
+
+    const q_1 = TrafficQueue.makeQueue();
+
+    const lot_1 = ParkingLot.makeLot({
+        SMALL: 2,
+        MEDIUM: 2,
+        LARGE: 5
+    });
+
+    TrafficQueue.addToTail(q_1, v_1);
+    TrafficQueue.addToTail(q_1, v_2);
+    TrafficQueue.addToTail(q_1, v_3);
+
+    CarParker.parkQueue(parker, lot_1, q_1);
+
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(true);
+    expect(TrafficQueue.isEmpty(q_1)).toBe(true);
+    expect(TrafficQueue.isContainsVehicles(q_1)).toBe(false);
+});
+
+test('Car Parker release one vehicle from lot', () => {
+    const parker = CarParker.makeParker();
+    const v_1 = Vehicle.makeMedium('Mercedes S-600');
+
+    const q_1 = TrafficQueue.makeQueue();
+
+    const lot_1 = ParkingLot.makeLot({
+        SMALL: 2,
+        MEDIUM: 2,
+        LARGE: 5
+    });
+
+    TrafficQueue.addToTail(q_1, v_1);
+
+    CarParker.parkQueue(parker, lot_1, q_1);
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(true);
+
+    CarParker.releaseVehicle(parker, lot_1);
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(false);
+});
+
+test('Car Parker park relese whole lot', () => {
+    const parker = CarParker.makeParker();
+    const v_1 = Vehicle.makeMedium('Mercedes S-600');
+    const v_2 = Vehicle.makeMedium('Mercedes S-600');
+    const v_3 = Vehicle.makeMedium('ZAZ');
+
+    const q_1 = TrafficQueue.makeQueue();
+
+    const lot_1 = ParkingLot.makeLot({
+        SMALL: 2,
+        MEDIUM: 2,
+        LARGE: 5
+    });
+
+    TrafficQueue.addToTail(q_1, v_1);
+    TrafficQueue.addToTail(q_1, v_2);
+    TrafficQueue.addToTail(q_1, v_3);
+
+    CarParker.parkQueue(parker, lot_1, q_1);
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(true);
+    expect(TrafficQueue.isEmpty(q_1)).toBe(true);
+    expect(TrafficQueue.isContainsVehicles(q_1)).toBe(false);
+
+    const q_r = CarParker.releaseWholeLot(parker, lot_1);
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(false);
+    expect(TrafficQueue.isEmpty(q_r)).toBe(false);
+    expect(TrafficQueue.isContainsVehicles(q_r)).toBe(true);
+});

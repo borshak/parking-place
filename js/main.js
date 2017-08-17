@@ -35,12 +35,23 @@ const queue = TrafficQueue.makeQueue('Q1');
 // Parker
 const parker = CarParker.makeParker('Sam');
 
+// const lot = ParkingLot.makeLot({
+//     DESCRIPTION: '#12',
+//     SMALL: 3,
+//     MEDIUM: 2,
+//     LARGE: 3
+// });
+
 const lot = ParkingLot.makeLot({
     DESCRIPTION: '#13',
     SMALL: 2,
     MEDIUM: 1,
     LARGE: 4
 });
+
+// const lot = ParkingLot.makeLot({
+//     DESCRIPTION: '#14'
+// });
 
 const vehiclesArray = [
     v_l_1,
