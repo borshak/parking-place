@@ -3,9 +3,10 @@
 const Vehicle = require('../vehicle/implementation');
 
 // Constructor
-const make = () => {
+const make = (description) => {
     return {
-        QUEUE: []
+        QUEUE: [],
+        DESCRIPTION: description || ''
     };
 };
 
@@ -50,11 +51,16 @@ const toString = (queue) => {
     const newLine = '\n';
     let result = '';
 
-    result += `Queue:${newLine}`;
-    result += `------${newLine}`;
-    queue.QUEUE.map((vehicle) => {
-        result += `${Vehicle.toString(vehicle)} ${newLine}`;
-    });
+    result += `Queue ${queue.DESCRIPTION} ${newLine}`;
+    result += `-----${newLine}`;
+    if (isContainsVehicles(queue)) {
+        queue.QUEUE.map((vehicle) => {
+            result += `${Vehicle.toString(vehicle)} ${newLine}`;
+        });
+    } else {
+        result += `... empty ...${newLine}`;
+    }
+
     result += `${newLine}`;
 
     return result;
