@@ -95,17 +95,18 @@ const placeVehicle = (lot, vehicle) => {
     };
 
     const tryToPlaceVehicle = (lot, sectionType, vehicle) => {
-        let result = false;
-
         if (isSectionHasEmptySpot(lot, sectionType)) {
             const spot = findEmptySpot(lot, sectionType);
             const vehicleFitToSpot = ParkingSpot.isFitToVehicle(spot, vehicle);
             if (vehicleFitToSpot) {
-                result = ParkingSpot.placeVehicle(spot, vehicle);
+                const placed = ParkingSpot.placeVehicle(spot, vehicle);
+                if (placed) {
+                    return true;
+                }
             }
         }
 
-        return result;
+        return false;
     };
 
     if (tryToPlaceVehicle(lot, SPOT_TYPE.SMALL, vehicle)) return true;

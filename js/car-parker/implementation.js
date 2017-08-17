@@ -57,12 +57,42 @@ const sortQueue = (parker, queue) => {
 };
 
 const parkVehicle = (parker, lot, vehicle) => {
-    return ParkingLot.placeVehicle(lot, vehicle);
+    const placed = ParkingLot.placeVehicle(lot, vehicle);
+
+    if (placed) {
+        return true;
+    }
+
+    return false;
 };
 
 
 const parkQueue = (parker, lot, queue) => {
-    // TODO: write implementation
+    const placeQueue = (lot, queue, tempQueue) => {
+        while (TrafficQueue.isContainsVehicles(queue)) {
+            const vehicle = TrafficQueue.releaseFromHead(queue);
+            const placed = parkVehicle(parker, lot, vehicle);
+            if (!placed) TrafficQueue.addToTail(tempQueue, vehicle);
+        }
+    };
+
+    const moveBackFromTempQueue = (tempQueue, queue) => {
+        while (TrafficQueue.isContainsVehicles(tempQueue)) {
+            const vehicle = TrafficQueue.releaseFromHead(tempQueue);
+            TrafficQueue.addToTail(queue, vehicle);
+        }
+    };
+
+    const isAllVehiclesPlaced = (queue) => {
+        return TrafficQueue.isEmpty(queue);
+    };
+
+    const tempQueue = TrafficQueue.makeQueue();
+
+    placeQueue(lot, queue, tempQueue);
+    moveBackFromTempQueue(tempQueue, queue);
+
+    return isAllVehiclesPlaced(queue);
 };
 
 
@@ -71,10 +101,22 @@ const releaseVehicle = (parker, lot) => {
     else return Vehicle.makeAbsent();
 };
 
+const releaseWholeLot = (parker, lot) => {
+    const queue = TrafficQueue.makeQueue();
+    while (ParkingLot.isContainsVehicles(lot)) {
+        const vehicle = releaseVehicle(parker, lot);
+        TrafficQueue.addToTail(queue, vehicle);
+    }
+    return queue;
+};
+
 module.exports = {
     makeParker: make,
 
     sortQueue: sortQueue,
     parkVehicle: parkVehicle,
-    releaseVehicle: releaseVehicle
+    parkQueue: parkQueue,
+
+    releaseVehicle: releaseVehicle,
+    releaseWholeLot: releaseWholeLot
 };
