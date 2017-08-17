@@ -79,6 +79,8 @@ module.exports = {
     makeMedium: makeMedium,
     makeLarge: makeLarge,
 
+    getDescription: getDescription,
+
     isNotExist: isNotExist,
     isExist: isExist,
     isSmall: isSmall,

@@ -1,12 +1,13 @@
-var TrafficQueue = require('./implementation');
+const TrafficQueue = require('./implementation');
 
 module.exports = {
     makeQueue: TrafficQueue.makeQueue,
 
-    addVehicle: TrafficQueue.addVehicle,
-    releaseFirstVehicle: TrafficQueue.releaseFirstVehicle,
-
     isEmpty: TrafficQueue.isEmpty,
+    isContainsVehicles: TrafficQueue.isContainsVehicles,
+
+    addToTail: TrafficQueue.addToTail,
+    releaseFromHead: TrafficQueue.releaseFromHead,
 
     toString: TrafficQueue.toString
 };

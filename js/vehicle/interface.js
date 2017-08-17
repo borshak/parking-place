@@ -6,6 +6,8 @@ module.exports = {
     makeMedium: Vehicle.makeMedium,
     makeLarge: Vehicle.makeLarge,
 
+    getDescription: Vehicle.getDescription,
+
     isNotExist: Vehicle.isNotExist,
     isExist: Vehicle.isExist,
     isSmall: Vehicle.isSmall,

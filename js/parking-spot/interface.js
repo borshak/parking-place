@@ -1,4 +1,4 @@
-var ParkingSpot = require('./implementation');
+const ParkingSpot = require('./implementation');
 
 module.exports = {
     makeSmall: ParkingSpot.makeSmall,
