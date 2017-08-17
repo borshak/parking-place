@@ -1,6 +1,7 @@
-const CarParker = require('../../js/car-parker/interface');
-const TrafficQueue = require('../../js/traffic-queue/interface');
 const Vehicle = require('../../js/vehicle/interface');
+const TrafficQueue = require('../../js/traffic-queue/interface');
+const ParkingLot = require('../../js/parking-lot/interface');
+const CarParker = require('../../js/car-parker/interface');
 
 test('After trying to sort empty queue it is empty', () => {
     const parker1 = CarParker.makeParker();
@@ -39,4 +40,49 @@ test('Car Parker sort Traffic Queue', () => {
     expect(Vehicle.isLarge(TrafficQueue.releaseFromHead(q1))).toBe(true);
 });
 
+test('Car Parker parked vehicle onto Lot', () => {
+    const parker = CarParker.makeParker();
+    const vehicle = Vehicle.makeSmall('');
+    const lot = ParkingLot.makeLot({
+        SMALL: 1
+    });
 
+    expect(CarParker.parkVehicle(parker, lot, vehicle)).toBe(true);
+    expect(ParkingLot.isContainsVehicles(lot)).toBe(true);
+});
+
+test('Vehicle that was released from parking by Car Parker is vehicle', () => {
+    const parker = CarParker.makeParker();
+    const vehicle = Vehicle.makeMedium('Mercedes S-600');
+    const lot = ParkingLot.makeLot({
+        LARGE: 1
+    });
+
+    CarParker.parkVehicle(parker, lot, vehicle);
+    expect(ParkingLot.isContainsVehicles(lot)).toBe(true);
+
+    const v_r = CarParker.releaseVehicle(parker, lot);
+    expect(ParkingLot.isContainsVehicles(lot)).toBe(false);
+    expect(Vehicle.isMedium(v_r)).toBe(true);
+});
+
+test('Car Parker can not park vehicle onto busy lot', () => {
+    const parker = CarParker.makeParker();
+    const v_1 = Vehicle.makeMedium('Mercedes S-600');
+    const v_2 = Vehicle.makeMedium('Mercedes S-600');
+    const v_3 = Vehicle.makeMedium('ZAZ');
+    const lot_1 = ParkingLot.makeLot();
+    const lot_2 = ParkingLot.makeLot({
+        LARGE: 1
+    });
+
+
+    expect(CarParker.parkVehicle(parker, lot_1, v_1)).toBe(false);
+    expect(ParkingLot.isContainsVehicles(lot_1)).toBe(false);
+
+    expect(CarParker.parkVehicle(parker, lot_2, v_2)).toBe(true);
+    expect(ParkingLot.isContainsVehicles(lot_2)).toBe(true);
+
+    expect(CarParker.parkVehicle(parker, lot_2, v_3)).toBe(false);
+    expect(ParkingLot.isContainsVehicles(lot_2)).toBe(true);
+});

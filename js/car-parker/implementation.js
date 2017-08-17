@@ -2,6 +2,7 @@
 
 const Vehicle = require('../vehicle/interface');
 const TrafficQueue = require('../traffic-queue/interface');
+const ParkingLot = require('../parking-lot/interface');
 
 // Constructor
 
@@ -55,7 +56,19 @@ const sortQueue = (parker, queue) => {
     return queue;
 };
 
+const parkVehicle = (parker, lot, vehicle) => {
+    return ParkingLot.placeVehicle(lot, vehicle);
+};
+
+const releaseVehicle = (parker, lot) => {
+    if (ParkingLot.isContainsVehicles(lot)) return ParkingLot.releaseVehicle(lot);
+    else return Vehicle.makeAbsent();
+};
+
 module.exports = {
     makeParker: make,
-    sortQueue: sortQueue
+
+    sortQueue: sortQueue,
+    parkVehicle: parkVehicle,
+    releaseVehicle: releaseVehicle
 };
